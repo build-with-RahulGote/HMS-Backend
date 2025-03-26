@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.DBConfig;
-
+import com.example.demo.Model.Appointment;
 import com.example.demo.Model.Patients;
 @Repository("patientrepo")
 public class PatientsRepositoryImpl implements PatientsRepository {
@@ -105,6 +105,25 @@ public class PatientsRepositoryImpl implements PatientsRepository {
 		
 	    
 	   
+	}
+
+	@Override
+	public boolean BookAppointment(Appointment apt) {
+			int value=jdbctemplate.update("insert into appointments values(?,?,?,?,?,?)",new PreparedStatementSetter() {
+				
+				@Override
+				public void setValues(PreparedStatement ps) throws SQLException {
+					// TODO Auto-generated method stub
+					ps.setInt(1, apt.getAppointmentid());
+					ps.setInt(2, apt.getPatientid());
+					ps.setInt(3, apt.getDoctorid());
+					ps.setDate(4,apt.getDate());
+					ps.setTime(5,apt.getTime());
+					ps.setString(6,apt.getStatus());
+					
+				}
+			});
+		return value>0?true:false;
 	}
 
 		

@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Model.Appointment;
 import com.example.demo.Model.Patients;
 import com.example.demo.Repository.PatientsRepository;
 
@@ -31,6 +32,14 @@ public class PatientsServiceImpl implements PatientsService {
 		
 		return patientsrepo.searchPatientsByName(patients);
 	}
+
+	@Override
+	public boolean bookAppointment(Appointment apt) {
+		// TODO Auto-generated method stub
+		return patientsrepo.BookAppointment(apt);
+	}
+
+
 
 	
 
