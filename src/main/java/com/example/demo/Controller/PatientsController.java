@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import com.example.demo.Exceptions.patientsNotFoundException;
-
+import com.example.demo.Model.Appointment;
 import com.example.demo.Model.Patients;
 import com.example.demo.Service.PatientsService;
 
@@ -67,6 +67,17 @@ public class PatientsController {
 		        throw new patientsNotFoundException("Patient with name '" + patients + "' not found in the database.");
 		    }
 		}
+	 
+	 @PostMapping("/bookAppointment")
+	 public String BookAppointment(@RequestBody Appointment apt) {
+		 boolean b = patientsService.bookAppointment(apt);
+		 if(b) {
+			 return "Appointment SuccessFully Booked!";
+		 }
+		 else {
+			 return "Some Problem is there....";
+		 }
+	 }
 	 
 	 
 
